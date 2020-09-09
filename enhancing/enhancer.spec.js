@@ -74,4 +74,46 @@ describe("enhancer unit tests", () => {
             enhancement: 1
         })
     })
+
+    it("decreases durability and/or enhancement", () => {
+        expect(enhancer.fail({
+            name: "battleaxe",
+            durability: 10,
+            enhancement: 10
+        })).toEqual({
+            name: "battleaxe",
+            durability: 5,
+            enhancement: 10
+        })
+
+        expect(enhancer.fail({
+            name: "battleaxe",
+            durability: 20,
+            enhancement: 15
+        })).toEqual({
+            name: "battleaxe",
+            durability: 10,
+            enhancement: 15
+        })
+
+        expect(enhancer.fail({
+            name: "battleaxe",
+            durability: 20,
+            enhancement: 16
+        })).toEqual({
+            name: "battleaxe",
+            durability: 10,
+            enhancement: 16
+        })
+
+        expect(enhancer.fail({
+            name: "battleaxe",
+            durability: 30,
+            enhancement: 19
+        })).toEqual({
+            name: "battleaxe",
+            durability: 20,
+            enhancement: 18
+        })
+    })
 })
