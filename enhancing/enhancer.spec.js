@@ -31,6 +31,30 @@ describe("enhancer unit tests", () => {
             durability: 100,
             enhancement: 2
         })
+
+        expect(() => enhancer.repair({
+            name: "battleaxe",
+            durability: -1,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.repair({
+            name: "battleaxe",
+            durability: 110,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.repair({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: -2
+        })).toThrow()
+
+        expect(() => enhancer.repair({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: 22
+        })).toThrow()
     })
 
     it("enhances item", () => {
@@ -73,6 +97,30 @@ describe("enhancer unit tests", () => {
             durability: 100,
             enhancement: 1
         })
+
+        expect(() => enhancer.success({
+            name: "battleaxe",
+            durability: -1,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.success({
+            name: "battleaxe",
+            durability: 110,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.success({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: -2
+        })).toThrow()
+
+        expect(() => enhancer.success({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: 22
+        })).toThrow()
     })
 
     it("decreases durability and/or enhancement", () => {
@@ -115,5 +163,29 @@ describe("enhancer unit tests", () => {
             durability: 20,
             enhancement: 18
         })
+
+        expect(() => enhancer.fail({
+            name: "battleaxe",
+            durability: -1,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.fail({
+            name: "battleaxe",
+            durability: 110,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.fail({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: -2
+        })).toThrow()
+
+        expect(() => enhancer.fail({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: 22
+        })).toThrow()
     })
 })
