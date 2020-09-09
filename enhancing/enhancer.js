@@ -71,5 +71,22 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  if (item.durability < 0 || item.durability > 100) {
+    throw new Error("durability must be between 0 and 100")
+  }
+
+  if (item.enhancement < 0 || item.enhancement > 20) {
+    throw new Error("enhancement must be between 0 and 20")
+  }
+
+  if (item.enhancement === 0) {
+    return { ...item }
+  }
+
+  if (item.enhancement > 0) {
+    return {
+      ...item,
+      name: `[+${item.enhancement}] ${item.name}`
+    }
+  }
 }

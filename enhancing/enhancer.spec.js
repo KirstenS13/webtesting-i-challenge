@@ -188,4 +188,50 @@ describe("enhancer unit tests", () => {
             enhancement: 22
         })).toThrow()
     })
+
+    it("changes the name of an item based on enhancment level", () => {
+        expect(enhancer.get({
+            name: "battleaxe",
+            durability: 23,
+            enhancement: 13
+        })).toEqual({
+            name: "[+13] battleaxe",
+            durability: 23,
+            enhancement: 13
+        })
+
+        expect(enhancer.get({
+            name: "battleaxe",
+            durability: 23,
+            enhancement: 0
+        })).toEqual({
+            name: "battleaxe",
+            durability: 23,
+            enhancement: 0
+        })
+
+        expect(() => enhancer.get({
+            name: "battleaxe",
+            durability: -1,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.get({
+            name: "battleaxe",
+            durability: 110,
+            enhancement: 2
+        })).toThrow()
+
+        expect(() => enhancer.get({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: -2
+        })).toThrow()
+
+        expect(() => enhancer.get({
+            name: "battleaxe",
+            durability: 14,
+            enhancement: 22
+        })).toThrow()
+    })
 })
